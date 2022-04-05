@@ -5,8 +5,13 @@ object SparkDemo extends App {
   val spark = SparkSession
     .builder()
     .appName("Spark SQL basic example")
-    //    .config("spark.some.config.option", "some-value")
     .master("local[*]")
     .getOrCreate()
 
+  val df = spark.read.text(args(0))
+  df.show()
+
+  df.write.text("abc")
 }
+
+// transitive dependencies
